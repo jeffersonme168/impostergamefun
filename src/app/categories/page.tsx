@@ -2,6 +2,12 @@ import { CLASSIC_WORDS, UNDERCOVER_PAIRS, CATEGORIES } from "@/data/word-bank";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Book, Utensils, Dog, Film, MapPin, Package, UserPlus } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Word Categories - Imposter Word Game Word Lists",
+  description: "Explore a variety of word categories for the Imposter Word Game. From food and animals to movies and custom lists, find the perfect theme for your party.",
+};
 
 const CATEGORY_ICONS: Record<string, any> = {
   Food: <Utensils className="w-5 h-5" />,

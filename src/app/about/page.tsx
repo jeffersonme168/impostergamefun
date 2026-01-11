@@ -2,6 +2,12 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Gamepad2, Heart, Mail, Github, Twitter, Globe, Users } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us - The Team Behind Imposter Word Game",
+  description: "Learn more about ImposterGame.fun. Our mission is to provide the best free online party games for friends and families to enjoy anywhere.",
+};
 
 export default function AboutPage() {
   return (

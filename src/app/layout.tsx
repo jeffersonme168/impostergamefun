@@ -7,8 +7,22 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Imposter Word Game - Ultimate Party Deduction Game",
-  description: "Play the best social deduction word game with your friends. Find the imposter, guess the word, and win the game!",
+  title: "Imposter Word Game Online - Free Social Deduction Party Game",
+  description: "Play the ultimate Imposter Word Game online! A free social deduction party game for 4-12 players. Find the imposter, guess the secret word, and enjoy the best group game for friends and family.",
+  keywords: "imposter word game, who is the imposter, social deduction game, online party games, free group games, word deduction game, party game generator",
+  authors: [{ name: "ImposterGame.fun" }],
+  openGraph: {
+    title: "Imposter Word Game Online - Free Party Game",
+    description: "The best free social deduction word game for your next party. Play with 4-12 friends instantly.",
+    url: "https://impostergame.fun",
+    siteName: "ImposterGame.fun",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Imposter Word Game Online",
+    description: "Unmask the imposter in your group with this thrilling social word game!",
+  },
 };
 
 export default function RootLayout({

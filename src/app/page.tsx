@@ -32,7 +32,7 @@ export default function LandingPage() {
                   Unmask the <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400">Imposter</span> in Your Group
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-200">
-                  A thrilling social deduction game for 4-12 players. Test your bluffing, intuition, and description skills. Playable on any device, anywhere.
+                  Play the <span className="text-foreground font-semibold">Imposter Word Game</span> online for free. A thrilling social deduction game for 4-12 players. Test your bluffing, intuition, and description skills.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
                   <Button size="lg" className="text-lg px-10 py-7 font-bold h-auto shadow-2xl shadow-primary/30 rounded-2xl group" asChild>
@@ -53,7 +53,7 @@ export default function LandingPage() {
                   {/* The Image from the User - Now as a clean decorative element */}
                   <img 
                     src="/unnamed.jpg" 
-                    alt="Party Game Atmosphere" 
+                    alt="Friends playing Imposter Word Game at a party" 
                     className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000"
                   />
                   
@@ -74,31 +74,37 @@ export default function LandingPage() {
         {/* Stats / Features Grid */}
         <section className="py-24 px-4 bg-muted/20 border-b border-border/40">
           <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight">Best Online Party Game Features</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Why thousands of players choose ImposterGame.fun for their social gatherings.
+              </p>
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { 
                   icon: <Users className="w-6 h-6" />, 
                   label: "4-12 Players", 
-                  title: "Group Party",
-                  desc: "Perfect for any size of group gathering."
+                  title: "Group Party Game",
+                  desc: "Perfect for any size of group gathering, from family reunions to office parties."
                 },
                 { 
                   icon: <Globe className="w-6 h-6" />, 
                   label: "Cross-Platform", 
-                  title: "Any Device",
-                  desc: "One phone is all you need to play."
+                  title: "Play Anywhere",
+                  desc: "No app download needed. One phone is all you need to start the fun."
                 },
                 { 
                   icon: <Zap className="w-6 h-6" />, 
                   label: "Fast-Paced", 
-                  title: "Instant Fun",
-                  desc: "Quick setup, no registration needed."
+                  title: "Instant Setup",
+                  desc: "Start a new game in seconds. No registration or login required."
                 },
                 { 
                   icon: <Gamepad2 className="w-6 h-6" />, 
                   label: "Social Game", 
-                  title: "Pure Social",
-                  desc: "Focus on conversation and deduction."
+                  title: "Pure Social Interaction",
+                  desc: "Focus on conversation, deduction, and bluffing with your friends."
                 }
               ].map((item, i) => (
                 <div key={i} className="p-8 rounded-3xl border border-white/5 bg-card/40 backdrop-blur-sm hover:border-primary/40 transition-all group">
@@ -211,7 +217,7 @@ export default function LandingPage() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-12 sm:gap-24">
               <div className="space-y-4">
-                <h4 className="font-bold uppercase text-xs tracking-widest text-primary">Game</h4>
+                <h3 className="font-bold uppercase text-xs tracking-widest text-primary">Game</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li><Link href="/game" className="hover:text-primary transition-colors">Start Playing</Link></li>
                   <li><Link href="/#modes" className="hover:text-primary transition-colors">Modes</Link></li>
@@ -219,7 +225,7 @@ export default function LandingPage() {
                 </ul>
               </div>
               <div className="space-y-4">
-                <h4 className="font-bold uppercase text-xs tracking-widest text-primary">Resources</h4>
+                <h3 className="font-bold uppercase text-xs tracking-widest text-primary">Resources</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li><Link href="/rules" className="hover:text-primary transition-colors">How to Play</Link></li>
                   <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>

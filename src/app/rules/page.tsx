@@ -1,6 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shield, Users, Sword, Trophy, Lightbulb, AlertTriangle } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Game Rules - How to Play Imposter Word Game",
+  description: "Learn how to play the Imposter Word Game. Step-by-step guide on roles, game flow, and victory conditions for the best social deduction party game.",
+};
 
 export default function RulesPage() {
   return (
