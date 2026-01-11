@@ -4,96 +4,171 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
   Users, 
-  Search, 
   Gamepad2, 
   HelpCircle, 
   Star, 
-  ShieldCheck,
   Globe,
-  Zap
+  Zap,
+  ArrowRight,
+  ShieldCheck,
+  Cpu
 } from "lucide-react";
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-xl">
-            <Gamepad2 className="w-8 h-8 text-primary" />
-            <span className="tracking-tight">ImposterGame.fun</span>
-          </div>
-          <nav className="hidden md:flex gap-6 text-sm font-medium text-muted-foreground">
-            <Link href="#rules" className="hover:text-primary transition-colors">How to Play</Link>
-            <Link href="#modes" className="hover:text-primary transition-colors">Modes</Link>
-            <Link href="#faq" className="hover:text-primary transition-colors">FAQ</Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <Button asChild>
-              <Link href="/game">Start Playing</Link>
-            </Button>
-          </div>
-        </div>
-      </header>
-
+    <div className="flex flex-col min-h-screen">
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="py-20 px-4 text-center space-y-8 bg-gradient-to-b from-primary/5 to-transparent">
-          <div className="container max-w-4xl mx-auto space-y-4">
-            <Badge variant="outline" className="px-4 py-1 border-primary/20 text-primary">
-              The Ultimate Social Deduction Game
-            </Badge>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter">
-              Unmask the Imposter with Your <span className="text-primary">Words</span>
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              A thrilling party game for 4-12 players. Test your intuition, description skills, and deduction in the most addictive social game online.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-              <Button size="lg" className="text-lg px-8" asChild>
-                <Link href="/game">Play for Free Now</Link>
-              </Button>
-              <Button size="lg" variant="outline" className="text-lg px-8" asChild>
-                <Link href="#rules">Learn the Rules</Link>
-              </Button>
+        {/* Hero Section - Two Column */}
+        <section className="relative overflow-hidden py-24 md:py-32 px-4 border-b border-border/40">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="flex flex-col lg:flex-row items-center gap-16">
+              {/* Left Column: Content */}
+              <div className="flex-1 text-center lg:text-left space-y-8 max-w-2xl mx-auto lg:mx-0">
+                <Badge variant="outline" className="px-4 py-1.5 border-primary/30 text-primary bg-primary/5 backdrop-blur-sm animate-in fade-in slide-in-from-bottom-2 duration-500">
+                  <Star className="w-3.5 h-3.5 mr-2 fill-primary" />
+                  #1 Party Word Game Generator
+                </Badge>
+                <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
+                  Unmask the <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400">Imposter</span> in Your Group
+                </h1>
+                <p className="text-xl text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-200">
+                  A thrilling social deduction game for 4-12 players. Test your bluffing, intuition, and description skills. Playable on any device, anywhere.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+                  <Button size="lg" className="text-lg px-10 py-7 font-bold h-auto shadow-2xl shadow-primary/30 rounded-2xl group" asChild>
+                    <Link href="/game">
+                      Start Game Now
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="text-lg px-10 py-7 font-bold h-auto border-2 rounded-2xl backdrop-blur-sm" asChild>
+                    <Link href="/rules">How to Play</Link>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Right Column: Illustration Placeholder */}
+              <div className="flex-1 relative w-full max-w-lg lg:max-w-none animate-in fade-in zoom-in duration-1000 delay-500">
+                <div className="relative aspect-square md:aspect-video lg:aspect-square rounded-3xl border border-primary/20 bg-card/40 backdrop-blur-xl shadow-2xl overflow-hidden flex items-center justify-center group">
+                  {/* Abstract SVG Illustration */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-indigo-500/10" />
+                  <div className="relative space-y-4 text-center">
+                    <div className="inline-flex p-6 rounded-3xl bg-primary/10 border border-primary/20 shadow-inner group-hover:scale-110 transition-transform duration-500">
+                      <Cpu className="w-20 h-20 text-primary animate-pulse" />
+                    </div>
+                    <div className="space-y-2">
+                      <p className="font-bold text-2xl tracking-tight">AI Word Engine</p>
+                      <p className="text-muted-foreground text-sm max-w-[240px] mx-auto">
+                        Generates unique word pairs for endless fun.
+                      </p>
+                    </div>
+                  </div>
+                  {/* Decorative Elements */}
+                  <div className="absolute top-10 right-10 p-4 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md shadow-lg animate-bounce duration-3000">
+                    <Users className="w-6 h-6 text-indigo-400" />
+                  </div>
+                  <div className="absolute bottom-12 left-12 p-4 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md shadow-lg animate-bounce duration-5000">
+                    <ShieldCheck className="w-6 h-6 text-rose-400" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container px-4 mx-auto">
-            <div className="text-center mb-16 space-y-4">
-              <h2 className="text-3xl font-bold tracking-tight">Why Play Imposter Game?</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Simple to start, impossible to put down. Perfect for family gatherings, parties, and office team building.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
+        {/* Stats / Features Grid */}
+        <section className="py-24 px-4 bg-muted/20 border-b border-border/40">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { 
-                  icon: <Users className="w-10 h-10 text-primary" />, 
-                  title: "4-12 Players", 
-                  desc: "Scale the fun from small groups to large parties seamlessly." 
+                  icon: <Users className="w-6 h-6" />, 
+                  label: "4-12 Players", 
+                  title: "Group Party",
+                  desc: "Perfect for any size of group gathering."
                 },
                 { 
-                  icon: <Globe className="w-10 h-10 text-primary" />, 
-                  title: "Play Anywhere", 
-                  desc: "Fully mobile-responsive. No downloads or registration required." 
+                  icon: <Globe className="w-6 h-6" />, 
+                  label: "Cross-Platform", 
+                  title: "Any Device",
+                  desc: "One phone is all you need to play."
                 },
                 { 
-                  icon: <Zap className="w-10 h-10 text-primary" />, 
-                  title: "Fast Rounds", 
-                  desc: "Quick 5-10 minute games that keep everyone engaged." 
+                  icon: <Zap className="w-6 h-6" />, 
+                  label: "Fast-Paced", 
+                  title: "5 Min Rounds",
+                  desc: "Quick, exciting game sessions."
+                },
+                { 
+                  icon: <ShieldCheck className="w-6 h-6" />, 
+                  label: "Secure & Private", 
+                  title: "Privacy First",
+                  desc: "No data collection, just pure fun."
                 }
-              ].map((feature, i) => (
-                <Card key={i} className="bg-card/50 backdrop-blur border-none shadow-lg">
-                  <CardHeader>
-                    <div className="mb-4">{feature.icon}</div>
-                    <CardTitle>{feature.title}</CardTitle>
+              ].map((item, i) => (
+                <div key={i} className="p-8 rounded-3xl border border-white/5 bg-card/40 backdrop-blur-sm hover:border-primary/40 transition-all group">
+                  <div className="inline-flex p-3 rounded-2xl bg-primary/10 text-primary mb-6 group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Game Modes - Glassmorphism Style */}
+        <section id="modes" className="py-24 px-4 border-b border-border/40 overflow-hidden relative">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0,transparent_100%)] pointer-events-none" />
+          <div className="container mx-auto px-4 md:px-8 relative">
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight">Three Unique Ways to Play</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Choose the mode that best fits your group's skill level and vibe.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { 
+                  title: "Classic", 
+                  badge: "Most Popular", 
+                  desc: "Civilians know the secret word, but the Imposter is completely in the dark. Can you blend in or spot the bluff?",
+                  difficulty: "Easy",
+                  color: "bg-indigo-500"
+                },
+                { 
+                  title: "Undercover", 
+                  badge: "Tactical", 
+                  desc: "Undercovers get a word slightly different from Civilians (e.g., Apple vs. Pear). The discussion gets tricky!",
+                  difficulty: "Medium",
+                  color: "bg-amber-500"
+                },
+                { 
+                  title: "Mr. White", 
+                  badge: "Extreme", 
+                  desc: "Mr. White has no word. If caught, he wins by guessing the Civilians' secret word correctly. High stakes!",
+                  difficulty: "Hard",
+                  color: "bg-rose-500"
+                }
+              ].map((mode, i) => (
+                <Card key={i} className="bg-card/30 backdrop-blur-xl border-white/5 hover:border-primary/40 transition-all rounded-[2.5rem] overflow-hidden group shadow-2xl">
+                  <div className={`h-2 w-full ${mode.color} opacity-40 group-hover:opacity-100 transition-opacity`} />
+                  <CardHeader className="p-10 pb-6">
+                    <div className="flex justify-between items-center mb-4">
+                      <Badge variant="secondary" className="rounded-lg">{mode.difficulty}</Badge>
+                      <Star className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    </div>
+                    <CardTitle className="text-3xl font-black">{mode.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{feature.desc}</p>
+                  <CardContent className="p-10 pt-0 space-y-6">
+                    <p className="text-muted-foreground leading-relaxed">{mode.desc}</p>
+                    <Button variant="ghost" className="p-0 hover:bg-transparent text-primary font-bold group" asChild>
+                      <Link href="/game">
+                        Try this mode
+                        <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </Button>
                   </CardContent>
                 </Card>
               ))}
@@ -101,137 +176,69 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Game Modes Section */}
-        <section id="modes" className="py-20">
-          <div className="container px-4 mx-auto">
-            <div className="text-center mb-16 space-y-4">
-              <h2 className="text-3xl font-bold tracking-tight">Exciting Game Modes</h2>
-              <p className="text-muted-foreground">Choose the way you want to play.</p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { 
-                  title: "Classic", 
-                  badge: "Most Popular", 
-                  desc: "Civilians know the word, Imposters don't. Can you bluff your way through?",
-                  difficulty: "Easy"
-                },
-                { 
-                  title: "Undercover", 
-                  badge: "Tactical", 
-                  desc: "Two very similar words are given. Civilians vs Undercovers. Discussion gets intense!",
-                  difficulty: "Medium"
-                },
-                { 
-                  title: "Mr. White", 
-                  badge: "Extreme", 
-                  desc: "Mr. White has no word at all. He must guess the word after being caught to win!",
-                  difficulty: "Hard"
-                }
-              ].map((mode, i) => (
-                <div key={i} className="relative group p-8 rounded-2xl border bg-card hover:border-primary/50 transition-all shadow-sm">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-2xl font-bold">{mode.title}</h3>
-                    <Badge variant="secondary">{mode.difficulty}</Badge>
-                  </div>
-                  <p className="text-muted-foreground mb-6">{mode.desc}</p>
-                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Star className="w-6 h-6 text-primary fill-primary" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Rules Section */}
-        <section id="rules" className="py-20 bg-muted/30">
-          <div className="container px-4 mx-auto max-w-4xl">
-            <h2 className="text-3xl font-bold tracking-tight text-center mb-12">How to Play</h2>
-            <div className="space-y-12">
-              {[
-                { 
-                  step: "01", 
-                  title: "Setup & Roles", 
-                  desc: "Choose your players and game mode. Each player takes turns checking their secret role and word on the screen. Keep it secret!" 
-                },
-                { 
-                  step: "02", 
-                  title: "The Description", 
-                  desc: "Starting with a random player, everyone gives a one-word or one-sentence description of their word. Don't be too vague, but don't be too obvious!" 
-                },
-                { 
-                  step: "03", 
-                  title: "The Discussion", 
-                  desc: "After the round, discuss who seems suspicious. Is their description slightly 'off'? Are they trying too hard to blend in?" 
-                },
-                { 
-                  step: "04", 
-                  title: "Voting & Winning", 
-                  desc: "Vote for the most suspicious player. If the Imposter is eliminated, Civilians win! If Imposters survive or guess the word, they win!" 
-                }
-              ].map((rule, i) => (
-                <div key={i} className="flex gap-6 items-start">
-                  <span className="text-4xl font-black text-primary/20">{rule.step}</span>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">{rule.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{rule.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section id="faq" className="py-20">
-          <div className="container px-4 mx-auto max-w-3xl">
-            <h2 className="text-3xl font-bold tracking-tight text-center mb-12 flex items-center justify-center gap-2">
-              <HelpCircle className="w-8 h-8 text-primary" /> FAQ
+        {/* Call to Action */}
+        <section className="py-32 px-4 relative overflow-hidden">
+          <div className="absolute inset-0 bg-primary opacity-[0.03] pointer-events-none" />
+          <div className="container mx-auto px-4 md:px-8 text-center space-y-10 relative">
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter max-w-4xl mx-auto leading-tight">
+              Ready to unmask the <span className="text-primary italic">Imposter</span>?
             </h2>
-            <div className="space-y-6">
-              {[
-                { q: "Is it really free?", a: "Yes, ImposterGame.fun is 100% free and requires no registration." },
-                { q: "How many people can play?", a: "We recommend 4 to 12 players for the best experience." },
-                { q: "Can I play on my phone?", a: "Absolutely! The game is designed for mobile browsers. Just one phone is enough for the whole group!" },
-                { q: "Are the words family-friendly?", a: "Yes, our default word bank is curated to be safe for all ages." }
-              ].map((faq, i) => (
-                <div key={i} className="p-6 rounded-lg border bg-card">
-                  <h4 className="font-bold mb-2">{faq.q}</h4>
-                  <p className="text-sm text-muted-foreground">{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-20 border-t bg-primary text-primary-foreground">
-          <div className="container px-4 mx-auto text-center space-y-8">
-            <h2 className="text-4xl font-bold">Ready to find the Imposter?</h2>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              Start your party now. It only takes 30 seconds to set up a game.
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Start your party in seconds. No account, no download, just fun.
             </p>
-            <Button size="lg" variant="secondary" className="text-lg px-12" asChild>
-              <Link href="/game">Start Game Now</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Button size="lg" className="text-xl px-12 py-8 font-black h-auto shadow-2xl shadow-primary/40 rounded-3xl" asChild>
+                <Link href="/game">Start New Game</Link>
+              </Button>
+              <div className="flex items-center gap-2 text-muted-foreground font-medium">
+                <Globe className="w-5 h-5" />
+                <span>One phone for all players</span>
+              </div>
+            </div>
           </div>
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="py-12 border-t">
-        <div className="container px-4 mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-2 font-bold text-lg">
-            <Gamepad2 className="w-6 h-6 text-primary" />
-            <span>ImposterGame.fun</span>
+      {/* Modern Footer */}
+      <footer className="border-t border-border/40 py-16 bg-muted/10 backdrop-blur-sm">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-12">
+            <div className="space-y-4">
+              <div className="flex items-center gap-2 font-bold text-2xl">
+                <div className="bg-primary p-1.5 rounded-lg">
+                  <Gamepad2 className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <span className="tracking-tighter">ImposterGame.fun</span>
+              </div>
+              <p className="text-muted-foreground max-w-xs text-sm leading-relaxed">
+                The ultimate social deduction word game for parties and gatherings. 100% free and mobile-friendly.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-12 sm:gap-24">
+              <div className="space-y-4">
+                <h4 className="font-bold uppercase text-xs tracking-widest text-primary">Game</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li><Link href="/game" className="hover:text-primary transition-colors">Start Playing</Link></li>
+                  <li><Link href="/#modes" className="hover:text-primary transition-colors">Modes</Link></li>
+                  <li><Link href="/categories" className="hover:text-primary transition-colors">Categories</Link></li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h4 className="font-bold uppercase text-xs tracking-widest text-primary">Resources</h4>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li><Link href="/rules" className="hover:text-primary transition-colors">How to Play</Link></li>
+                  <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
+                  <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <p className="text-sm text-muted-foreground">
-            © 2026 ImposterGame.fun. The ultimate social party game.
-          </p>
-          <div className="flex gap-6">
-            <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Terms of Service</Link>
+          <div className="border-t border-border/40 mt-16 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+            <p>© 2026 ImposterGame.fun. Built for fun.</p>
+            <div className="flex gap-8">
+              <Link href="#" className="hover:text-primary transition-colors">Privacy</Link>
+              <Link href="#" className="hover:text-primary transition-colors">Terms</Link>
+            </div>
           </div>
         </div>
       </footer>

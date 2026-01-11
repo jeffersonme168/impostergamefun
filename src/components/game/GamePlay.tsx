@@ -3,18 +3,19 @@
 import { useState, useEffect } from "react";
 import { useGameStore } from "@/lib/store";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
   Timer, 
-  MessageSquare, 
   UserX, 
-  RefreshCcw,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Skull,
+  ShieldAlert
 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function GamePlay() {
   const { players, eliminatePlayer, endGame, scores } = useGameStore();
@@ -22,7 +23,6 @@ export function GamePlay() {
   const [isActive, setIsActive] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState<number | null>(null);
 
-  // Simple timer logic
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isActive && timeLeft > 0) {
@@ -34,14 +34,12 @@ export function GamePlay() {
   }, [isActive, timeLeft]);
 
   const activePlayers = players.filter(p => !p.isEliminated);
-  const impostersLeft = activePlayers.filter(p => p.role === 'imposter' || p.role === 'undercover' || p.role === 'mr-white').length;
-
+  
   const handleEliminate = () => {
     if (selectedPlayer === null) return;
     
     eliminatePlayer(selectedPlayer);
     
-    // Check win condition
     const newActivePlayers = players.filter(p => !p.isEliminated && p.id !== selectedPlayer);
     const newImpostersLeft = newActivePlayers.filter(p => p.role !== 'civilian').length;
     
@@ -55,101 +53,161 @@ export function GamePlay() {
   };
 
   return (
-    <div className="space-y-6 w-full">
-      <div className="flex justify-between items-center bg-card/50 p-4 rounded-2xl border">
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${isActive ? 'bg-primary/20 text-primary animate-pulse' : 'bg-muted text-muted-foreground'}`}>
-              <Timer className="w-5 h-5" />
+    <div className="space-y-8 w-full max-w-2xl mx-auto">
+      {/* Top Status Bar */}
+      <div className="grid grid-cols-2 gap-4">
+        <div className="bg-card/40 backdrop-blur-xl p-6 rounded-[2rem] border border-white/5 flex items-center justify-between shadow-xl">
+          <div className="flex items-center gap-4">
+            <div className={cn(
+              "p-3 rounded-2xl transition-all duration-500",
+              isActive ? "bg-primary text-white animate-pulse shadow-lg shadow-primary/30" : "bg-muted text-muted-foreground"
+            )}>
+              <Timer className="w-6 h-6" />
             </div>
-            <div>
-              <p className="text-xs uppercase tracking-wider font-bold opacity-60">Timer</p>
-              <p className="text-xl font-mono font-bold">{timeLeft}s</p>
+            <div className="space-y-0.5">
+              <p className="text-[10px] uppercase font-black tracking-widest opacity-40">Time Left</p>
+              <p className="text-2xl font-mono font-black tabular-nums">{timeLeft}s</p>
             </div>
           </div>
-          <div className="hidden sm:block w-px h-8 bg-border" />
-          <div className="hidden sm:flex flex-col">
-            <p className="text-xs uppercase tracking-wider font-bold opacity-60">Score</p>
-            <p className="text-sm font-bold">
-              <span className="text-primary">CIV: {scores.civilians}</span> / <span className="text-accent">IMP: {scores.imposters}</span>
-            </p>
+          <Button 
+            variant="ghost" 
+            size="sm"
+            className="h-10 px-4 rounded-xl font-bold border border-white/5 hover:bg-white/5"
+            onClick={() => setIsActive(!isActive)}
+          >
+            {isActive ? "Pause" : "Start"}
+          </Button>
+        </div>
+
+        <div className="bg-card/40 backdrop-blur-xl p-6 rounded-[2rem] border border-white/5 flex items-center justify-between shadow-xl">
+          <div className="flex items-center gap-4">
+            <div className="p-3 rounded-2xl bg-indigo-500/10 text-indigo-400">
+              <ShieldAlert className="w-6 h-6" />
+            </div>
+            <div className="space-y-0.5">
+              <p className="text-[10px] uppercase font-black tracking-widest opacity-40">Series Score</p>
+              <p className="text-lg font-black">
+                <span className="text-primary">{scores.civilians}</span>
+                <span className="mx-2 opacity-20">/</span>
+                <span className="text-rose-500">{scores.imposters}</span>
+              </p>
+            </div>
           </div>
         </div>
-        <Button 
-          variant={isActive ? "outline" : "default"} 
-          size="sm"
-          onClick={() => setIsActive(!isActive)}
-        >
-          {isActive ? "Pause" : timeLeft === 60 ? "Start" : "Resume"}
-        </Button>
       </div>
 
       <div className="text-center space-y-2">
-        <h2 className="text-2xl font-black">Round 1: Describe</h2>
-        <p className="text-sm text-muted-foreground">Each player describes their word in one sentence.</p>
+        <h2 className="text-3xl font-black tracking-tight">The Interrogation</h2>
+        <p className="text-muted-foreground font-medium">Observe and find the suspicious descriptions.</p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      {/* Player Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {players.map((player) => (
-          <Card 
-            key={player.id} 
-            className={`relative overflow-hidden border-2 transition-all ${
-              player.isEliminated 
-                ? 'opacity-40 grayscale scale-95 border-transparent' 
-                : 'hover:border-primary/50 cursor-pointer'
-            } ${selectedPlayer === player.id ? 'border-primary bg-primary/5' : ''}`}
-            onClick={() => !player.isEliminated && setSelectedPlayer(player.id)}
+          <motion.div
+            key={player.id}
+            initial={false}
+            animate={{ 
+              scale: player.isEliminated ? 0.95 : 1,
+              opacity: player.isEliminated ? 0.5 : 1
+            }}
           >
-            <CardContent className="p-4 flex flex-col items-center justify-center min-h-[100px]">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 font-bold ${
-                player.isEliminated ? 'bg-muted' : 'bg-primary/10 text-primary'
-              }`}>
-                {player.id}
-              </div>
-              <p className="text-xs font-bold uppercase opacity-60">Player</p>
-              {player.isEliminated && (
-                <div className="absolute inset-0 flex items-center justify-center bg-background/60">
-                  <UserX className="w-8 h-8 text-destructive" />
-                </div>
+            <Card 
+              className={cn(
+                "relative overflow-hidden border-2 transition-all duration-300 rounded-[2rem] h-32 cursor-pointer group shadow-lg",
+                player.isEliminated 
+                  ? 'border-transparent bg-muted/20 grayscale' 
+                  : selectedPlayer === player.id 
+                    ? 'border-primary bg-primary/10 ring-4 ring-primary/5' 
+                    : 'border-white/5 bg-card/40 hover:border-primary/40 hover:bg-card/60'
               )}
-            </CardContent>
-          </Card>
+              onClick={() => !player.isEliminated && setSelectedPlayer(player.id)}
+            >
+              <CardContent className="p-0 flex flex-col items-center justify-center h-full">
+                <div className={cn(
+                  "w-12 h-12 rounded-2xl flex items-center justify-center mb-2 font-black text-xl transition-all duration-500 group-hover:scale-110",
+                  player.isEliminated 
+                    ? 'bg-muted text-muted-foreground' 
+                    : selectedPlayer === player.id 
+                      ? 'bg-primary text-white shadow-lg shadow-primary/30' 
+                      : 'bg-primary/10 text-primary'
+                )}>
+                  {player.id}
+                </div>
+                <p className="text-[10px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-60 transition-opacity">Player</p>
+                
+                {player.isEliminated && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-background/40 backdrop-blur-[2px]">
+                    <Skull className="w-10 h-10 text-rose-500/80" />
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
       </div>
 
-      <div className="pt-4 flex flex-col gap-3">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button 
-              className="w-full py-6" 
-              variant="destructive" 
-              disabled={selectedPlayer === null}
-            >
-              Eliminate Player {selectedPlayer}
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Confirm Elimination</DialogTitle>
-            </DialogHeader>
-            <div className="py-6 flex flex-col items-center gap-4">
-              <AlertCircle className="w-12 h-12 text-destructive" />
-              <p className="text-center">
-                Are you sure the majority voted to eliminate <span className="font-bold text-lg">Player {selectedPlayer}</span>?
-              </p>
+      {/* Action Footer */}
+      <AnimatePresence mode="wait">
+        {selectedPlayer !== null ? (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            className="pt-6"
+          >
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  className="w-full h-16 rounded-3xl text-lg font-black bg-rose-500 hover:bg-rose-600 shadow-2xl shadow-rose-500/30 transition-all active:scale-[0.98]" 
+                >
+                  Eliminate Player {selectedPlayer}
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="rounded-[3rem] p-8 max-w-sm mx-auto">
+                <DialogHeader className="items-center text-center space-y-4">
+                  <div className="w-20 h-20 rounded-full bg-rose-500/10 flex items-center justify-center">
+                    <AlertCircle className="w-10 h-10 text-rose-500 animate-bounce" />
+                  </div>
+                  <DialogTitle className="text-2xl font-black">Confirm Vote</DialogTitle>
+                </DialogHeader>
+                <div className="py-6 text-center space-y-2">
+                  <p className="text-muted-foreground font-medium">
+                    Are you absolutely sure the group has voted to eliminate
+                  </p>
+                  <p className="text-3xl font-black text-foreground">Player {selectedPlayer}?</p>
+                </div>
+                <DialogFooter className="flex-col sm:flex-col gap-3">
+                  <Button 
+                    className="w-full h-14 rounded-2xl font-bold bg-rose-500 hover:bg-rose-600"
+                    onClick={handleEliminate}
+                  >
+                    Confirm Elimination
+                  </Button>
+                  <Button 
+                    variant="ghost" 
+                    className="w-full h-14 rounded-2xl font-bold text-muted-foreground"
+                    onClick={() => setSelectedPlayer(null)}
+                  >
+                    Cancel
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </motion.div>
+        ) : (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="pt-10 text-center"
+          >
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary/5 border border-primary/10 text-sm font-bold text-primary/60">
+              <CheckCircle2 className="w-4 h-4" />
+              {activePlayers.length} players remaining
             </div>
-            <DialogFooter className="gap-2 sm:gap-0">
-              <Button variant="ghost" onClick={() => setSelectedPlayer(null)}>Cancel</Button>
-              <Button variant="destructive" onClick={handleEliminate}>Confirm Elimination</Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-        
-        <div className="flex justify-center items-center gap-2 text-xs text-muted-foreground">
-          <CheckCircle2 className="w-3 h-3" />
-          <span>{activePlayers.length} players remaining</span>
-        </div>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
