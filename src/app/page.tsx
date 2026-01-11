@@ -47,28 +47,23 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Right Column: Illustration Placeholder */}
+              {/* Right Column: Pure Decorative Image */}
               <div className="flex-1 relative w-full max-w-lg lg:max-w-none animate-in fade-in zoom-in duration-1000 delay-500">
-                <div className="relative aspect-square md:aspect-video lg:aspect-square rounded-3xl border border-primary/20 bg-card/40 backdrop-blur-xl shadow-2xl overflow-hidden flex items-center justify-center group">
-                  {/* Abstract SVG Illustration */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-indigo-500/10" />
-                  <div className="relative space-y-4 text-center">
-                    <div className="inline-flex p-6 rounded-3xl bg-primary/10 border border-primary/20 shadow-inner group-hover:scale-110 transition-transform duration-500">
-                      <Cpu className="w-20 h-20 text-primary animate-pulse" />
-                    </div>
-                    <div className="space-y-2">
-                      <p className="font-bold text-2xl tracking-tight">AI Word Engine</p>
-                      <p className="text-muted-foreground text-sm max-w-[240px] mx-auto">
-                        Generates unique word pairs for endless fun.
-                      </p>
-                    </div>
-                  </div>
-                  {/* Decorative Elements */}
-                  <div className="absolute top-10 right-10 p-4 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md shadow-lg animate-bounce duration-3000">
-                    <Users className="w-6 h-6 text-indigo-400" />
-                  </div>
-                  <div className="absolute bottom-12 left-12 p-4 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-md shadow-lg animate-bounce duration-5000">
-                    <ShieldCheck className="w-6 h-6 text-rose-400" />
+                <div className="relative aspect-square rounded-[3rem] border border-white/5 bg-card/40 backdrop-blur-xl shadow-2xl overflow-hidden group">
+                  {/* The Image from the User - Now as a clean decorative element */}
+                  <img 
+                    src="/unnamed.jpg" 
+                    alt="Party Game Atmosphere" 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000"
+                  />
+                  
+                  {/* Subtle Vignette for depth */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+                  
+                  {/* Floating badge for a social touch */}
+                  <div className="absolute bottom-8 right-8 px-6 py-3 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl flex items-center gap-3">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-sm font-bold tracking-tight">Join the Fun</span>
                   </div>
                 </div>
               </div>
@@ -96,14 +91,14 @@ export default function LandingPage() {
                 { 
                   icon: <Zap className="w-6 h-6" />, 
                   label: "Fast-Paced", 
-                  title: "5 Min Rounds",
-                  desc: "Quick, exciting game sessions."
+                  title: "Instant Fun",
+                  desc: "Quick setup, no registration needed."
                 },
                 { 
-                  icon: <ShieldCheck className="w-6 h-6" />, 
-                  label: "Secure & Private", 
-                  title: "Privacy First",
-                  desc: "No data collection, just pure fun."
+                  icon: <Gamepad2 className="w-6 h-6" />, 
+                  label: "Social Game", 
+                  title: "Pure Social",
+                  desc: "Focus on conversation and deduction."
                 }
               ].map((item, i) => (
                 <div key={i} className="p-8 rounded-3xl border border-white/5 bg-card/40 backdrop-blur-sm hover:border-primary/40 transition-all group">
