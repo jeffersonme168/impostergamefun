@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   description: "Play the ultimate Imposter Word Game online! A free social deduction party game for 4-12 players. Find the imposter, guess the secret word, and enjoy the best group game for friends and family.",
   keywords: "imposter word game, who is the imposter, social deduction game, online party games, free group games, word deduction game, party game generator",
   authors: [{ name: "ImposterGame.fun" }],
+  icons: {
+    icon: "/unnamed.jpg",
+    apple: "/unnamed.jpg",
+  },
   openGraph: {
     title: "Imposter Word Game Online - Free Party Game",
     description: "The best free social deduction word game for your next party. Play with 4-12 friends instantly.",
