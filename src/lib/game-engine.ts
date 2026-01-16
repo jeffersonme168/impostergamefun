@@ -42,11 +42,17 @@ export function generatePlayers(settings: GameSettings): Player[] {
     word2 = customWord2 || "Word B";
   } else {
     if (mode === "undercover") {
-      const pairs = UNDERCOVER_PAIRS[category] || UNDERCOVER_PAIRS["Food"];
+      const pairs = UNDERCOVER_PAIRS[category];
+      if (!pairs || pairs.length === 0) {
+        throw new Error(`No word pairs available for category: ${category}`);
+      }
       const pair = pairs[Math.floor(Math.random() * pairs.length)];
       [word1, word2] = Math.random() > 0.5 ? [pair.word1, pair.word2] : [pair.word2, pair.word1];
     } else {
-      const words = CLASSIC_WORDS[category] || CLASSIC_WORDS["Food"];
+      const words = CLASSIC_WORDS[category];
+      if (!words || words.length === 0) {
+        throw new Error(`No words available for category: ${category}`);
+      }
       word1 = words[Math.floor(Math.random() * words.length)];
       word2 = "???"; // For imposters or Mr. White
     }

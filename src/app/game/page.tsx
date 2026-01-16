@@ -17,6 +17,9 @@ export default function GamePage() {
 
   useEffect(() => {
     setMounted(true);
+    // Reset game state when entering the game page
+    // Ensures fresh start when navigating from home
+    resetGame();
   }, []);
 
   if (!mounted) {

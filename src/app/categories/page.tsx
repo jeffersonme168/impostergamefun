@@ -30,8 +30,8 @@ export default function CategoriesPage() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {Object.entries(CATEGORIES).map(([key, label]) => {
           if (key === 'CUSTOM') return null;
-          const words = CLASSIC_WORDS[label] || [];
-          const pairs = UNDERCOVER_PAIRS[label] || [];
+          const words = CLASSIC_WORDS[key as keyof typeof CLASSIC_WORDS] || [];
+          const pairs = UNDERCOVER_PAIRS[key as keyof typeof UNDERCOVER_PAIRS] || [];
 
           return (
             <Card key={key} className="bg-card/40 backdrop-blur-sm border-white/5 hover:border-primary/20 transition-all group overflow-hidden">
