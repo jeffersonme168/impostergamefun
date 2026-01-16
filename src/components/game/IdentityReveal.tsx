@@ -25,8 +25,8 @@ export function IdentityReveal() {
   const isSpecialRole = currentPlayer.role !== 'civilian';
 
   return (
-    <div className="space-y-10 w-full max-w-md mx-auto">
-      <div className="text-center space-y-4">
+    <div className="flex flex-col min-h-[calc(100dvh-120px)] w-full max-w-md mx-auto py-4">
+      <div className="text-center space-y-4 mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary uppercase tracking-widest animate-pulse">
           <Sparkles className="w-3 h-3" />
           Identity Check
@@ -37,7 +37,7 @@ export function IdentityReveal() {
         <p className="text-muted-foreground font-medium">Please pass the device to Player {currentPlayer.id}</p>
       </div>
 
-      <div className="relative h-[480px] perspective-1000">
+      <div className="relative flex-1 flex items-center justify-center perspective-1000 min-h-[420px]">
         <AnimatePresence mode="wait">
           {!isRevealed ? (
             <motion.div
@@ -46,19 +46,19 @@ export function IdentityReveal() {
               animate={{ rotateY: 0, opacity: 1 }}
               exit={{ rotateY: 180, opacity: 0 }}
               transition={{ duration: 0.7, type: "spring", bounce: 0.4 }}
-              className="w-full h-full cursor-pointer group"
+              className="w-full h-full cursor-pointer group backface-hidden"
               onClick={() => setIsRevealed(true)}
             >
-              <Card className="w-full h-full flex flex-col items-center justify-center border-2 border-dashed border-primary/30 bg-card/40 backdrop-blur-xl hover:border-primary/60 hover:bg-card/60 transition-all duration-500 rounded-[3rem] shadow-2xl relative overflow-hidden">
+              <Card className="w-full h-full min-h-[420px] flex flex-col items-center justify-center border-2 border-dashed border-primary/30 bg-card/40 backdrop-blur-xl hover:border-primary/60 hover:bg-card/60 transition-all duration-500 rounded-[3rem] shadow-2xl relative overflow-hidden touch-manipulation backface-hidden">
                 {/* Decorative background for the back of the card */}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0,transparent_100%)]" />
                 
-                <div className="relative p-8 rounded-full bg-primary/10 mb-8 border border-primary/20 group-hover:scale-110 transition-transform duration-500">
-                  <User className="w-20 h-20 text-primary" />
+                <div className="relative p-6 rounded-full bg-primary/10 mb-6 border border-primary/20 group-hover:scale-110 transition-transform duration-500">
+                  <User className="w-16 h-16 text-primary" />
                 </div>
                 <CardTitle className="text-2xl font-bold tracking-tight relative">Tap to Reveal</CardTitle>
                 <p className="text-sm text-muted-foreground mt-3 relative font-medium">Only you should see this!</p>
-                <div className="mt-12 opacity-30 group-hover:opacity-60 transition-opacity">
+                <div className="mt-8 opacity-30 group-hover:opacity-60 transition-opacity">
                   <EyeOff className="w-8 h-8" />
                 </div>
                 
@@ -74,10 +74,10 @@ export function IdentityReveal() {
               animate={{ rotateY: 0, opacity: 1 }}
               exit={{ rotateY: 180, opacity: 0 }}
               transition={{ duration: 0.7, type: "spring", bounce: 0.4 }}
-              className="w-full h-full"
+              className="w-full h-full backface-hidden"
             >
               <Card className={cn(
-                "w-full h-full flex flex-col items-center justify-center border-2 rounded-[3rem] shadow-2xl relative overflow-hidden transition-colors duration-500",
+                "w-full h-full min-h-[420px] flex flex-col items-center justify-center border-2 rounded-[3rem] shadow-2xl relative overflow-hidden transition-colors duration-500 p-8",
                 isSpecialRole 
                   ? "border-rose-500/50 bg-rose-500/5 shadow-rose-500/10" 
                   : "border-primary/50 bg-primary/5 shadow-primary/10"
@@ -89,28 +89,28 @@ export function IdentityReveal() {
                 )} />
 
                 <div className={cn(
-                  "p-8 rounded-full mb-8 shadow-2xl transition-transform duration-700 hover:scale-105",
+                  "p-6 rounded-full mb-6 shadow-2xl transition-transform duration-700 hover:scale-105",
                   isSpecialRole ? "bg-rose-500 text-white" : "bg-primary text-white"
                 )}>
-                  <Eye className="w-20 h-20" />
+                  <Eye className="w-16 h-16" />
                 </div>
                 
-                <div className="text-center space-y-6 relative z-10 px-6">
+                <div className="text-center space-y-4 relative z-10 w-full">
                   <div className="space-y-1">
-                    <p className="text-xs font-black uppercase tracking-[0.3em] opacity-50">Your Secret Word</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-50">Your Secret Word</p>
                     <h3 className={cn(
-                      "text-6xl font-black tracking-tighter break-words",
+                      "text-5xl md:text-6xl font-black tracking-tighter break-words leading-tight",
                       isSpecialRole ? "text-rose-500" : "text-primary"
                     )}>
                       {currentPlayer.word}
                     </h3>
                   </div>
 
-                  <div className="flex flex-col items-center gap-4">
-                    <Badge variant={currentPlayer.role === 'civilian' ? 'default' : 'destructive'} className="px-6 py-2 text-sm font-bold rounded-xl shadow-lg">
+                  <div className="flex flex-col items-center gap-3">
+                    <Badge variant={currentPlayer.role === 'civilian' ? 'default' : 'destructive'} className="px-6 py-1.5 text-sm font-bold rounded-xl shadow-lg">
                       {currentPlayer.role.toUpperCase()}
                     </Badge>
-                    <p className="text-xs text-muted-foreground font-medium max-w-[200px] leading-relaxed italic">
+                    <p className="text-[11px] text-muted-foreground font-medium max-w-[220px] leading-relaxed italic">
                       {currentPlayer.role === 'civilian' 
                         ? "Describe your word without revealing it to the Imposter."
                         : "Blend in with the Civilians. Don't let them catch you!"}
@@ -124,7 +124,7 @@ export function IdentityReveal() {
                     handleNext();
                   }}
                   className={cn(
-                    "mt-12 group h-14 px-10 rounded-2xl font-bold transition-all",
+                    "mt-8 group h-14 px-10 rounded-2xl font-bold transition-all relative z-50 touch-manipulation",
                     isSpecialRole ? "bg-rose-500 hover:bg-rose-600" : "bg-primary hover:bg-primary/90"
                   )}
                   size="lg"
@@ -139,7 +139,7 @@ export function IdentityReveal() {
       </div>
 
       {/* Progress Dots */}
-      <div className="flex justify-center gap-2 pt-4">
+      <div className="flex justify-center gap-2 mt-8 mb-4">
         {players.map((_, i) => (
           <div 
             key={i} 

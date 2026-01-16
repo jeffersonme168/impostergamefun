@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   keywords: "imposter word game, who is the imposter, social deduction game, online party games, free group games, word deduction game, party game generator",
   authors: [{ name: "ImposterGame.fun" }],
   icons: {
-    icon: "/unnamed.jpg",
-    apple: "/unnamed.jpg",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
     title: "Imposter Word Game Online - Free Party Game",
@@ -35,8 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={cn(inter.className, "min-h-screen bg-background antialiased selection:bg-primary/30")}>
+    <html lang="en" className="dark" translate="no">
+      <body 
+        className={cn(inter.className, "min-h-screen bg-background antialiased selection:bg-primary/30")}
+        suppressHydrationWarning
+      >
         <div className="relative flex min-h-screen flex-col">
           {/* Global Background Decorations */}
           <div className="pointer-events-none fixed inset-0 z-[-1] overflow-hidden">

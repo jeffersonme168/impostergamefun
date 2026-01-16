@@ -23,15 +23,73 @@ export function GamePlay() {
   const [isActive, setIsActive] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState<number | null>(null);
 
+  // Sound helper using Web Audio API
+  const playSound = (type: 'milestone' | 'tick' | 'warning') => {
+    try {
+      const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+      const audioCtx = new AudioContextClass();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      if (type === 'milestone') {
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(880, audioCtx.currentTime); // A5
+        oscillator.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.5);
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.5);
+      } else if (type === 'warning') {
+        oscillator.type = 'square';
+        oscillator.frequency.setValueAtTime(440, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.2);
+      } else {
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(660, audioCtx.currentTime);
+        gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.1);
+      }
+    } catch (e) {
+      console.error("Audio play failed", e);
+    }
+  };
+
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isActive && timeLeft > 0) {
-      interval = setInterval(() => setTimeLeft((t) => t - 1), 1000);
+      interval = setInterval(() => {
+        setTimeLeft((t) => {
+          const next = t - 1;
+          
+          // Sound triggers
+          if (next === 30) playSound('milestone');
+          if (next === 10) playSound('warning');
+          if (next < 10 && next > 0) playSound('tick');
+          
+          return next;
+        });
+      }, 1000);
     } else if (timeLeft === 0) {
+      if (isActive) playSound('milestone'); // Final alert
       setIsActive(false);
     }
     return () => clearInterval(interval);
   }, [isActive, timeLeft]);
+
+  // Initial sound when starting
+  useEffect(() => {
+    if (isActive && timeLeft === 60) {
+      playSound('milestone');
+    }
+  }, [isActive]);
 
   const activePlayers = players.filter(p => !p.isEliminated);
   
@@ -55,28 +113,41 @@ export function GamePlay() {
   return (
     <div className="space-y-8 w-full max-w-2xl mx-auto">
       {/* Top Status Bar */}
-      <div className="grid grid-cols-2 gap-4">
-        <div className="bg-card/40 backdrop-blur-xl p-6 rounded-[2rem] border border-white/5 flex items-center justify-between shadow-xl">
-          <div className="flex items-center gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-card/40 backdrop-blur-xl p-6 rounded-[2rem] border border-white/5 flex items-center justify-between shadow-xl relative overflow-hidden group">
+          <div className="flex items-center gap-4 relative z-10">
             <div className={cn(
               "p-3 rounded-2xl transition-all duration-500",
-              isActive ? "bg-primary text-white animate-pulse shadow-lg shadow-primary/30" : "bg-muted text-muted-foreground"
+              isActive ? "bg-primary text-white shadow-lg shadow-primary/30" : "bg-muted text-muted-foreground"
             )}>
-              <Timer className="w-6 h-6" />
+              <Timer className={cn("w-6 h-6", isActive && "animate-spin-slow")} />
             </div>
             <div className="space-y-0.5">
               <p className="text-[10px] uppercase font-black tracking-widest opacity-40">Time Left</p>
-              <p className="text-2xl font-mono font-black tabular-nums">{timeLeft}s</p>
+              <p className={cn(
+                "text-2xl font-mono font-black tabular-nums transition-colors",
+                timeLeft <= 10 && isActive ? "text-rose-500 animate-pulse" : ""
+              )}>{timeLeft}s</p>
             </div>
           </div>
+          
           <Button 
-            variant="ghost" 
-            size="sm"
-            className="h-10 px-4 rounded-xl font-bold border border-white/5 hover:bg-white/5"
+            size="lg"
+            className={cn(
+              "h-14 px-8 rounded-2xl font-black shadow-lg transition-all active:scale-95 relative z-10",
+              isActive 
+                ? "bg-amber-500 hover:bg-amber-600 text-white shadow-amber-500/20" 
+                : "bg-primary hover:bg-primary/90 text-white shadow-primary/20"
+            )}
             onClick={() => setIsActive(!isActive)}
           >
             {isActive ? "Pause" : "Start"}
           </Button>
+
+          {/* Background animation for active timer */}
+          {isActive && (
+            <div className="absolute inset-0 bg-primary/5 animate-pulse pointer-events-none" />
+          )}
         </div>
 
         <div className="bg-card/40 backdrop-blur-xl p-6 rounded-[2rem] border border-white/5 flex items-center justify-between shadow-xl">
