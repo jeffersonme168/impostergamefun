@@ -6,7 +6,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About Us - The Team Behind Imposter Word Game",
-  description: "Learn more about ImposterGame.fun. Our mission is to provide the best free online party games for friends and families to enjoy anywhere.",
+  description: "Learn more about ImposterGame.fun. Our mission is to provide the best free online party games for friends and families to enjoy anywhere, anytime.",
 };
 
 export default function AboutPage() {

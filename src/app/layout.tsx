@@ -7,8 +7,12 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://impostergame.fun"),
+  alternates: {
+    canonical: "/",
+  },
   title: "Imposter Word Game Online - Free Social Deduction Party Game",
-  description: "Play the ultimate Imposter Word Game online! A free social deduction party game for 4-12 players. Find the imposter, guess the secret word, and enjoy the best group game for friends and family.",
+  description: "Play the Imposter Word Game online for free! A fun social deduction party game for 4-12 players. Find the imposter, guess the secret word, and enjoy with friends.",
   keywords: "imposter word game, who is the imposter, social deduction game, online party games, free group games, word deduction game, party game generator",
   authors: [{ name: "ImposterGame.fun" }],
   icons: {

@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "FAQ - Frequently Asked Questions | Imposter Word Game",
-  description: "Find answers to common questions about the Imposter Word Game. Learn about player limits, game modes, and how to play with friends.",
+  description: "Find answers to frequently asked questions about the Imposter Word Game. Learn about player limits, game modes, and how to play with friends at your next party.",
 };
 
 const faqs = [
