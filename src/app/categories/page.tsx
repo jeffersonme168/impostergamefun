@@ -1,7 +1,7 @@
 import { CLASSIC_WORDS, UNDERCOVER_PAIRS, CATEGORIES } from "@/data/word-bank";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Book, Utensils, Dog, Film, MapPin, Package, UserPlus } from "lucide-react";
+import { Book, Utensils, Dog, Film, MapPin, Package, UserPlus, Trophy, Star, Briefcase, Globe, Music2, ShoppingBag } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,6 +15,12 @@ const CATEGORY_ICONS: Record<string, any> = {
   Movies: <Film className="w-5 h-5" />,
   Places: <MapPin className="w-5 h-5" />,
   Objects: <Package className="w-5 h-5" />,
+  Sports: <Trophy className="w-5 h-5" />,
+  Celebrities: <Star className="w-5 h-5" />,
+  Brands: <ShoppingBag className="w-5 h-5" />,
+  Professions: <Briefcase className="w-5 h-5" />,
+  Countries: <Globe className="w-5 h-5" />,
+  Music: <Music2 className="w-5 h-5" />,
   Custom: <UserPlus className="w-5 h-5" />,
 };
 
