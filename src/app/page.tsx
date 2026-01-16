@@ -237,8 +237,7 @@ export default function LandingPage() {
           <div className="border-t border-border/40 mt-16 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
             <p>© 2026 ImposterGame.fun. Built for fun.</p>
             <div className="flex gap-8">
-              <Link href="#" className="hover:text-primary transition-colors">Privacy</Link>
-              <Link href="#" className="hover:text-primary transition-colors">Terms</Link>
+              <Link href="mailto:support@impostergamegenerator.com" className="hover:text-primary transition-colors">Email Us</Link>
             </div>
           </div>
         </div>

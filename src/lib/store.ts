@@ -83,6 +83,7 @@ export const useGameStore = create<GameState>((set) => ({
     phase: 'setup',
     players: [],
     currentRevealIndex: 0,
-    winner: null
+    winner: null,
+    settings: defaultSettings
   }),
 }));

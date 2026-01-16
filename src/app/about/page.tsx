@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Gamepad2, Heart, Mail, Github, Twitter, Globe, Users } from "lucide-react";
+import { Gamepad2, Heart, Mail, Globe, Users } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
 
@@ -69,17 +69,9 @@ export default function AboutPage() {
             Have a suggestion for a new game mode? Found a bug? Or just want to say hi? We'd love to hear from you.
           </p>
           <div className="flex flex-wrap justify-center gap-6 pt-4">
-            <Link href="mailto:hello@impostergame.fun" className="flex items-center gap-2 p-3 px-6 rounded-2xl border border-white/5 bg-background hover:bg-muted transition-colors font-medium">
+            <Link href="mailto:support@impostergamegenerator.com" className="flex items-center gap-2 p-3 px-6 rounded-2xl border border-white/5 bg-background hover:bg-muted transition-colors font-medium">
               <Mail className="w-5 h-5 text-primary" />
               Email Us
-            </Link>
-            <Link href="#" className="flex items-center gap-2 p-3 px-6 rounded-2xl border border-white/5 bg-background hover:bg-muted transition-colors font-medium">
-              <Twitter className="w-5 h-5 text-sky-400" />
-              Twitter
-            </Link>
-            <Link href="#" className="flex items-center gap-2 p-3 px-6 rounded-2xl border border-white/5 bg-background hover:bg-muted transition-colors font-medium">
-              <Github className="w-5 h-5" />
-              GitHub
             </Link>
           </div>
         </section>
