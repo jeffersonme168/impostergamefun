@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Gamepad2, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -32,7 +32,11 @@ export function Header() {
             title="ImposterGame.fun - Free Online Party Game"
           >
             <div className="bg-primary p-1.5 rounded-lg shadow-lg shadow-primary/20">
-              <Gamepad2 className="w-6 h-6 text-primary-foreground" />
+              <img 
+                src="https://cloudflareimg.top/impostergamegenerator/favicon.png" 
+                alt="Imposter Game Icon" 
+                className="w-6 h-6"
+              />
             </div>
             <span className="tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
               ImposterGame.fun

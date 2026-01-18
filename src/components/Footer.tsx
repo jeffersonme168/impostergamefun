@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Gamepad2 } from "lucide-react";
 
 export function Footer() {
   return (
@@ -9,7 +8,11 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2 font-bold text-2xl">
               <div className="bg-primary p-1.5 rounded-lg">
-                <Gamepad2 className="w-6 h-6 text-primary-foreground" />
+                <img 
+                  src="https://cloudflareimg.top/impostergamegenerator/favicon.png" 
+                  alt="Imposter Game Icon" 
+                  className="w-6 h-6"
+                />
               </div>
               <span className="tracking-tighter">ImposterGame.fun</span>
             </div>

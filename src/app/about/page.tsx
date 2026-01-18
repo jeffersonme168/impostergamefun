@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Gamepad2, Heart, Mail, Globe, Users } from "lucide-react";
+import { Heart, Mail, Globe, Users } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
 
@@ -31,9 +31,13 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="flex-1 w-full max-w-[320px]">
-            <div className="aspect-square rounded-[3rem] bg-gradient-to-br from-primary to-indigo-600 flex items-center justify-center p-1 shadow-2xl shadow-primary/20">
+            <div className="aspect-square rounded-[3rem] bg-gradient-to-br from-primary to-cyan-600 flex items-center justify-center p-1 shadow-2xl shadow-primary/20">
               <div className="w-full h-full rounded-[2.8rem] bg-background flex items-center justify-center">
-                <Gamepad2 className="w-24 h-24 text-primary animate-bounce duration-3000" />
+                <img 
+                  src="https://cloudflareimg.top/impostergamegenerator/favicon.png" 
+                  alt="Imposter Game Icon" 
+                  className="w-24 h-24 animate-bounce duration-3000"
+                />
               </div>
             </div>
           </div>

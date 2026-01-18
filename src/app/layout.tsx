@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   keywords: "imposter word game, who is the imposter, social deduction game, online party games, free group games, word deduction game, party game generator",
   authors: [{ name: "ImposterGame.fun" }],
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: "https://cloudflareimg.top/impostergamegenerator/favicon.png",
+    apple: "https://cloudflareimg.top/impostergamegenerator/favicon.png",
   },
   openGraph: {
     title: "Imposter Word Game Online - Free Party Game",
@@ -51,7 +51,7 @@ export default function RootLayout({
             <div className="absolute inset-0 bg-grid-white opacity-[0.2]" />
             <div className="absolute inset-0 bg-gradient-to-tr from-background via-background/90 to-primary/5" />
             <div className="absolute top-[-10%] left-[-10%] h-[40%] w-[40%] rounded-full bg-primary/10 blur-[120px]" />
-            <div className="absolute bottom-[-10%] right-[-10%] h-[40%] w-[40%] rounded-full bg-indigo-500/10 blur-[120px]" />
+            <div className="absolute bottom-[-10%] right-[-10%] h-[40%] w-[40%] rounded-full bg-primary/10 blur-[120px]" />
           </div>
           
           <Header />

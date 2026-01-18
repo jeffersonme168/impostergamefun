@@ -3,12 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
-  Users, 
-  Gamepad2, 
   HelpCircle, 
   Star, 
   Globe,
-  Zap,
   ArrowRight,
   ShieldCheck,
   Cpu
@@ -29,7 +26,7 @@ export default function LandingPage() {
                   #1 Party Word Game Generator
                 </Badge>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tighter leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-100">
-                  Unmask the <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-400">Imposter</span> in Your Group
+                  Unmask the <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-cyan-400">Imposter</span> in Your Group
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-200">
                   Play the <span className="text-foreground font-semibold">Imposter Word Game</span> online for free. A thrilling social deduction game for 4-12 players. Test your bluffing, intuition, and description skills.
@@ -83,25 +80,25 @@ export default function LandingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { 
-                  icon: <Users className="w-6 h-6" />, 
+                  icon: <img src="https://cloudflareimg.top/impostergamegenerator/favicon.png" alt="Icon" className="w-6 h-6" />, 
                   label: "4-12 Players", 
                   title: "Group Party Game",
                   desc: "Perfect for any size of group gathering, from family reunions to office parties."
                 },
                 { 
-                  icon: <Globe className="w-6 h-6" />, 
+                  icon: <img src="https://cloudflareimg.top/impostergamegenerator/favicon.png" alt="Icon" className="w-6 h-6" />, 
                   label: "Cross-Platform", 
                   title: "Play Anywhere",
                   desc: "No app download needed. One phone is all you need to start the fun."
                 },
                 { 
-                  icon: <Zap className="w-6 h-6" />, 
+                  icon: <img src="https://cloudflareimg.top/impostergamegenerator/favicon.png" alt="Icon" className="w-6 h-6" />, 
                   label: "Fast-Paced", 
                   title: "Instant Setup",
                   desc: "Start a new game in seconds. No registration or login required."
                 },
                 { 
-                  icon: <Gamepad2 className="w-6 h-6" />, 
+                  icon: <img src="https://cloudflareimg.top/impostergamegenerator/favicon.png" alt="Icon" className="w-6 h-6" />, 
                   label: "Social Game", 
                   title: "Pure Social Interaction",
                   desc: "Focus on conversation, deduction, and bluffing with your friends."
@@ -136,21 +133,21 @@ export default function LandingPage() {
                   badge: "Most Popular", 
                   desc: "Civilians know the secret word, but the Imposter is completely in the dark. Can you blend in or spot the bluff?",
                   difficulty: "Easy",
-                  color: "bg-indigo-500"
+                  color: "bg-primary"
                 },
                 { 
                   title: "Undercover", 
                   badge: "Tactical", 
                   desc: "Undercovers get a word slightly different from Civilians (e.g., Apple vs. Pear). The discussion gets tricky!",
                   difficulty: "Medium",
-                  color: "bg-amber-500"
+                  color: "bg-cyan-500"
                 },
                 { 
                   title: "Mr. White", 
                   badge: "Extreme", 
                   desc: "Mr. White has no word. If caught, he wins by guessing the Civilians' secret word correctly. High stakes!",
                   difficulty: "Hard",
-                  color: "bg-rose-500"
+                  color: "bg-blue-400"
                 }
               ].map((mode, i) => (
                 <Card key={i} className="bg-card/30 backdrop-blur-xl border-white/5 hover:border-primary/40 transition-all rounded-[2.5rem] overflow-hidden group shadow-2xl">
