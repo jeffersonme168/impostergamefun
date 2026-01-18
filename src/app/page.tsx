@@ -177,6 +177,30 @@ export default function LandingPage() {
           </div>
         </section>
 
+        {/* Latest Blog Posts */}
+        <section className="py-24 px-4 bg-muted/10 border-b border-border/40">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center mb-12 space-y-4">
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight">Latest Guides & Resources</h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+                Master the game with our deep-dive strategies and creative word lists
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* This section will show the latest 3 blog posts */}
+              {/* Content will be dynamically loaded via server component in production */}
+              <div className="text-center text-muted-foreground py-12">
+                Blog posts coming soon...
+              </div>
+            </div>
+            <div className="text-center mt-12">
+              <Button variant="outline" size="lg" asChild>
+                <Link href="/blog">View All Articles</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* Call to Action */}
         <section className="py-32 px-4 relative overflow-hidden">
           <div className="absolute inset-0 bg-primary opacity-[0.03] pointer-events-none" />
@@ -228,6 +252,7 @@ export default function LandingPage() {
                 <h3 className="font-bold uppercase text-xs tracking-widest text-primary">Resources</h3>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                   <li><Link href="/rules" className="hover:text-primary transition-colors">How to Play</Link></li>
+                  <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
                   <li><Link href="/about" className="hover:text-primary transition-colors">About Us</Link></li>
                   <li><Link href="/faq" className="hover:text-primary transition-colors">FAQ</Link></li>
                 </ul>
