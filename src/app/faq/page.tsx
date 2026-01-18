@@ -1,5 +1,5 @@
 import { Badge } from "@/components/ui/badge";
-import { HelpCircle, MessageCircle, Smartphone, Users } from "lucide-react";
+import { HelpCircle, MessageCircle, Smartphone, Users, ShieldCheck, Lock } from "lucide-react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -32,6 +32,16 @@ const faqs = [
     question: "Can I play this game over Zoom or Discord?",
     answer: "Yes! While the 'pass the phone' method is best for in-person parties, you can play remotely by having the host message each player their secret word.",
     icon: <HelpCircle className="w-5 h-5 text-primary" />
+  },
+  {
+    question: "Do you collect any personal information?",
+    answer: "No. We do not collect names, emails, or any personal data. No registration or account is needed to play.",
+    icon: <Lock className="w-5 h-5 text-primary" />
+  },
+  {
+    question: "Is it safe for children?",
+    answer: "Yes! We do not collect any information from our users, including children. The game is designed for all ages to enjoy together.",
+    icon: <ShieldCheck className="w-5 h-5 text-primary" />
   }
 ];
 
